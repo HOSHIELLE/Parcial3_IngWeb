@@ -1,0 +1,195 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #3d0066, #8a2be2);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    color: #2a003d;
+}
+
+/* ============================
+   ENCABEZADO
+   ============================ */
+header {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* ============================
+   FORMULARIO
+   ============================ */
+form {
+    max-width: 850px;
+    margin: 30px auto;
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Animación suave */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+    color: #5a009d;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+/* ============================
+   LABELS Y CAMPOS
+   ============================ */
+label {
+    font-weight: 600;
+    display: block;
+    margin-top: 15px;
+    color: #3d0066;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    border-radius: 10px;
+    border: 2px solid #c59bff;
+    background: #f5e6ff;
+    color: #2a003d;
+    font-size: 0.95rem;
+    transition: 0.2s ease-in-out;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #7a00cc;
+    background: #ffffff;
+    box-shadow: 0 0 8px rgba(120, 0, 200, 0.4);
+    outline: none;
+}
+
+textarea {
+    min-height: 100px;
+}
+
+/* ============================
+   CHECKBOX
+   ============================ */
+input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 8px;
+    accent-color: #7a00cc;
+}
+
+/* ============================
+   BOTONES
+   ============================ */
+.botones {
+    margin-top: 25px;
+    text-align: right;
+}
+
+button {
+    background: #7a00cc;
+    border: none;
+    padding: 12px 20px;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.25s ease-in-out;
+    box-shadow: 0 4px 10px rgba(80, 0, 130, 0.3);
+}
+
+button:hover {
+    background: #58008d;
+    box-shadow: 0 6px 14px rgba(60,0,100,0.4);
+}
+
+/* ============================
+   MENSAJES
+   ============================ */
+.error {
+    color: #d30048;
+    background: #ffd6e0;
+    padding: 10px;
+    border-left: 5px solid #d30048;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.ok {
+    color: #0a7a2e;
+    background: #d4ffdf;
+    padding: 10px;
+    border-left: 5px solid #0a7a2e;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* ============================
+   TABLA DEL REPORTE
+   ============================ */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    background: #d7b4ff;
+    padding: 10px;
+    font-weight: 600;
+    color: #3d0066;
+}
+
+td {
+    background: #faf3ff;
+    padding: 8px;
+    border-bottom: 1px solid #e5ccff;
+}
+
+/* ============================
+   FOOTER
+   ============================ */
+footer {
+    margin-top: 40px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 12px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 0.9rem;
+    border-top: 2px solid rgba(255,255,255,0.3);
+}
+
+/* ============================
+   REPORTE CONTENEDOR
+   ============================ */
+.reporte-contenedor {
+    max-width: 1000px;
+    margin: 30px auto;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    overflow-x: auto;
+}

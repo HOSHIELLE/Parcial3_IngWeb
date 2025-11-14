@@ -1,0 +1,99 @@
+-- =========================================================
+--  Descripción:
+--  Script de creación de la base de datos del parcial.
+--  Incluye:
+--    - Base de datos Parcial3_IngWeb
+--    - Tabla paises
+--    - Tabla temas_tecnologicos
+--    - Tabla inscriptos
+--    - Tabla inscripto_tema (tabla puente)
+--  Autor: Stephany Chong
+-- =========================================================
+
+-- Borramos la base de datos si ya existe (para evitar conflictos)
+DROP DATABASE IF EXISTS Parcial3_IngWeb;
+
+-- Creamos la base de datos del proyecto
+CREATE DATABASE Parcial3_IngWeb
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+
+-- Indicamos que vamos a trabajar sobre esta base de datos
+USE Parcial3_IngWeb;
+
+-- =========================================================
+-- TABLA: paises
+-- Descripción: lista de países para el formulario
+-- =========================================================
+CREATE TABLE paises (
+  id_pais INT AUTO_INCREMENT PRIMARY KEY,   -- Identificador único del país
+  nombre VARCHAR(100) NOT NULL              -- Nombre del país
+);
+
+-- Insertamos algunos países de ejemplo
+INSERT INTO paises (nombre) VALUES
+('Panamá'),
+('Costa Rica'),
+('Colombia'),
+('México');
+
+-- =========================================================
+-- TABLA: temas_tecnologicos
+-- Descripción: temas que el estudiante puede seleccionar (checkbox)
+-- =========================================================
+CREATE TABLE temas_tecnologicos (
+  id_tema INT AUTO_INCREMENT PRIMARY KEY,   -- Identificador único del tema
+  nombre VARCHAR(150) NOT NULL              -- Nombre del tema tecnológico
+);
+
+-- Insertamos los diferentes temas tecnológicos
+INSERT INTO temas_tecnologicos (nombre) VALUES
+('Inteligencia Artificial'),
+('Ciberseguridad'),
+('Desarrollo Web'),
+('Desarrollo Móvil'),
+('Redes'),
+('Bases de Datos');
+
+-- =========================================================
+-- TABLA: inscriptos
+-- Descripción: datos principales del formulario de inscripción
+-- =========================================================
+CREATE TABLE inscriptos (
+  id_inscripto INT AUTO_INCREMENT PRIMARY KEY,     -- ID único del inscripto
+  nombre VARCHAR(100) NOT NULL,                    -- Nombre del inscripto
+  apellido VARCHAR(100) NOT NULL,                  -- Apellido del inscripto
+  edad INT NOT NULL,                               -- Edad
+  sexo ENUM('M','F','O') NOT NULL,                 -- Sexo (M = Masculino, F = Femenino, O = Otro)
+  id_pais INT NOT NULL,                            -- País de residencia (relacionado con paises)
+  nacionalidad VARCHAR(100) NOT NULL,              -- Nacionalidad del inscripto
+  correo VARCHAR(150) NOT NULL,                    -- Correo electrónico
+  celular VARCHAR(30) NOT NULL,                    -- Número de celular
+  observaciones TEXT,                              -- Comentarios u observaciones sobre el evento
+  fecha_formulario DATETIME NOT NULL,              -- Fecha y hora en que se llenó el formulario
+
+  -- Clave foránea que relaciona con la tabla paises
+  CONSTRAINT fk_pais
+    FOREIGN KEY (id_pais) REFERENCES paises(id_pais)
+);
+
+-- =========================================================
+-- TABLA: inscripto_tema
+-- Descripción:
+--   Tabla puente para la relación muchos-a-muchos
+--   entre "inscriptos" y "temas_tecnologicos".
+--   Un inscripto puede elegir varios temas.
+-- =========================================================
+CREATE TABLE inscripto_tema (
+  id_inscripto INT NOT NULL,   -- ID del inscripto
+  id_tema INT NOT NULL,        -- ID del tema tecnológico
+
+  -- Clave primaria compuesta (no se puede repetir la misma combinación)
+  PRIMARY KEY (id_inscripto, id_tema),
+
+  -- Clave foránea hacia inscriptos
+  FOREIGN KEY (id_inscripto) REFERENCES inscriptos(id_inscripto),
+
+  -- Clave foránea hacia temas_tecnologicos
+  FOREIGN KEY (id_tema) REFERENCES temas_tecnologicos(id_tema)
+);
